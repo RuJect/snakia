@@ -1,0 +1,31 @@
+[project]
+name = "snakia"
+version = "0.1.0"
+description = "idk"
+readme = "README.md"
+authors = [
+    { name = "rus07tam", email = "rus07tam@gmail.com" }
+]
+keywords = ["pytorch", "machine learning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Free Threading",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "networkx>=3.4.2",
+    "pydantic>=2.12.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/ruject/snakia"
+Repository = "https://github.com/ruject/snakia"
+"Issue Tracker" = "https://github.com/ruject/snakia/issues"
+
+[build-system]
+requires = ["uv_build>=0.8.14,<0.9.0"]
+build-backend = "uv_build"
