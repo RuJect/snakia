@@ -31,6 +31,7 @@
             uv
             isort
             mypy
+            pylint
           ];
         };
       }
