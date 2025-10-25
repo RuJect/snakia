@@ -1,8 +1,12 @@
-from typing import Any, Self, final
+from typing import Any, final
 
 
 @final
 class UniqueType(type):
+    """
+    A metaclass that prevents multiple instances of a class from being created.
+    """
+
     def __new__(
         cls,
         name: str,
@@ -32,8 +36,11 @@ class UniqueType(type):
 
 
 class Unique(metaclass=UniqueType):
-    pass
+    """
+    A class that prevents multiple instances of a class from being created.
+    """
 
 
 def unique(name: str) -> UniqueType:
+    """Factory for creating a unique type."""
     return UniqueType(name, (), {})

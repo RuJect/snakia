@@ -6,24 +6,27 @@ from typing import Final
 
 
 class PlatformOS(IntEnum):
-    UNKNOWN = 0b000
-    WINDOWS = 0b001
-    LINUX = 0b010
-    MACOS = 0b011
-    IOS = 0b100
-    FREEBSD = 0b101
-    ANDROID = 0b110
+    UNKNOWN = 0
+    ANDROID = 1
+    FREEBSD = 2
+    IOS = 3
+    LINUX = 4
+    MACOS = 5
+    WINDOWS = 6
 
     @property
     def is_apple(self) -> bool:
+        """MacOS, iOS"""
         return self in [PlatformOS.MACOS, PlatformOS.IOS]
 
     @property
     def is_linux(self) -> bool:
+        """Linux, Android"""
         return self in [PlatformOS.LINUX, PlatformOS.ANDROID]
 
     @classmethod
     def resolve(cls) -> PlatformOS:
+        """Get the current platform."""
         if sys.platform in ["win32", "win16", "dos", "cygwin", "msys"]:
             return PlatformOS.WINDOWS
         elif sys.platform.startswith("linux"):
@@ -43,3 +46,4 @@ class PlatformOS(IntEnum):
 
 
 OS: Final[PlatformOS] = PlatformOS.resolve()
+"""The current platform."""

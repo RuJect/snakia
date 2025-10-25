@@ -5,4 +5,6 @@ from snakia.types import Unique
 
 @final
 class Unset(Unique):
-    pass
+    """
+    A class that represents unset.
+    """

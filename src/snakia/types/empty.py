@@ -1,14 +1,20 @@
 from typing import Any, final
 
 
-def func(*a: Any, **kw: Any) -> Any:
-    pass
+def func(*_: Any, **__: Any) -> Any:
+    """
+    A function that does nothing
+    """
 
 
-async def async_func(*a: Any, **kw: Any) -> Any:
-    pass
+async def async_func(*_: Any, **__: Any) -> Any:
+    """
+    An async function that does nothing
+    """
 
 
 @final
 class Class:
-    pass
+    """
+    A class that does nothing
+    """

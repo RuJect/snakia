@@ -11,12 +11,14 @@ class LinuxLayer(PlatformLayer[Literal[PlatformOS.LINUX]]):
     target = PlatformOS.LINUX
 
     def os_release_raw(self) -> str:
+        """Read /etc/os-release or /usr/lib/os-release"""
         try:
-            return open("/etc/os-release").read()
+            return open("/etc/os-release", encoding="utf-8").read()
         except FileNotFoundError:
-            return open("/usr/lib/os-release").read()
+            return open("/usr/lib/os-release", encoding="utf-8").read()
 
     def os_release(self) -> dict[str, str]:
+        """Parse `os_release_raw` and return a dict"""
         raw = self.os_release_raw()
         info = {
             "ID": "linux",
@@ -35,16 +37,21 @@ class LinuxLayer(PlatformLayer[Literal[PlatformOS.LINUX]]):
         return info
 
     def distro_name(self) -> str:
+        """Return the distro name."""
         return self.os_release().get("name", "linux")
 
     def distro_pretty_name(self) -> str:
+        """Return the distro pretty name."""
         return self.os_release().get("PRETTY_NAME", "Linux")
 
     def distro_id(self) -> str:
+        """Return the distro id."""
         return self.os_release().get("ID", "linux")
 
     def version(self) -> str:
+        """Return the distro version."""
         return self.os_release().get("VERSION_ID", "0")
 
     def codename(self) -> str:
+        """Return the distro codename."""
         return self.os_release().get("VERSION_CODENAME", "unknown")
