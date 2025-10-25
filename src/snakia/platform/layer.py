@@ -25,5 +25,4 @@ class PlatformLayer[T: PlatformOS]:
     def try_get(cls, platform: PlatformOS, /) -> Self | None:
         if platform == cls.target:
             return cls(platform)
-        else:
-            return None
+        return None

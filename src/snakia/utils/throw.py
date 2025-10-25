@@ -23,10 +23,8 @@ def throw(
     if isinstance(from_, Unset):
         if len(exceptions) == 1:
             raise exceptions[0]
-        else:
-            raise ExceptionGroup("", exceptions)
+        raise ExceptionGroup("", exceptions)
     else:
         if len(exceptions) == 1:
             raise exceptions[0] from from_
-        else:
-            raise ExceptionGroup("", exceptions) from from_
+        raise ExceptionGroup("", exceptions) from from_

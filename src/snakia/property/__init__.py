@@ -1,5 +1,5 @@
 from .cell_property import CellProperty
-from .classproperty import classproperty
+from .classproperty import ClassProperty
 from .hook_property import HookProperty
 from .initonly import Initonly, initonly
 from .priv_property import PrivProperty
@@ -8,7 +8,7 @@ from .readonly import Readonly, readonly
 
 __all__ = [
     "CellProperty",
-    "classproperty",
+    "ClassProperty",
     "HookProperty",
     "Initonly",
     "initonly",

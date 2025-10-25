@@ -1,10 +1,12 @@
 import sys
 from types import TracebackType
-from typing import Any, Callable, final
+from typing import Any, Callable, Protocol, final
 
-type ExceptionHook[T: BaseException] = Callable[
-    [T, TracebackType | None], bool | None
-]
+
+class ExceptionHook[T: BaseException](Protocol):
+    def __call__(
+        self, exception: T, frame: TracebackType | None, /
+    ) -> bool | None: ...
 
 
 @final
@@ -52,7 +54,7 @@ class _ExceptionManager:
                 break
             except BaseException as e:
                 if e is exception:
-                    return None
+                    return
                 type_, exception = type(e), e
 
 

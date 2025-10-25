@@ -8,31 +8,31 @@ class UniqueType(type):
     """
 
     def __new__(
-        cls,
+        mcs,
         name: str,
         bases: tuple[type, ...],
         namespace: dict[str, Any],
         /,
         **kwds: Any,
     ) -> type:
-        t = super().__new__(cls, name, bases, {})
+        t = super().__new__(mcs, name, bases, {})
         setattr(t, "__new__", lambda cls, *args, **kwargs: cls)
         return t
 
     @final
     def __init__(
-        self, name: str, bases: tuple[type, ...], namespace: dict[str, Any]
+        cls, name: str, bases: tuple[type, ...], namespace: dict[str, Any]
     ) -> None:
         super().__init__(name, bases, namespace)
 
-    def __instancecheck__(self, instance: Any) -> bool:
-        return instance is self
+    def __instancecheck__(cls, instance: Any) -> bool:
+        return instance is cls
 
-    def __eq__(self, other: Any) -> bool:
-        return self is other
+    def __eq__(cls, other: Any) -> bool:
+        return cls is other
 
-    def __call__[T](self: type[T]) -> T:
-        return self.__new__(self)
+    def __call__[T](cls: type[T]) -> T:
+        return cls.__new__(cls)
 
 
 class Unique(metaclass=UniqueType):

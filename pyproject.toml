@@ -31,3 +31,7 @@ Repository = "https://github.com/ruject/snakia"
 [build-system]
 requires = ["uv_build>=0.8.14,<0.9.0"]
 build-backend = "uv_build"
+
+[tool.pylint.'master']
+init-hook = "import sys; sys.path.append('.venv/lib/python3.12/site-packages')"
+disable = ["C0114", "R0903"]

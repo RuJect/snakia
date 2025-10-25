@@ -1,13 +1,11 @@
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-from typing import Callable
+from typing import Protocol
 
 from .event import Event
 
-type Filter[T: Event] = Callable[[T], bool]
 
+class Filter[T: Event](Protocol):
+    """Filter for an event."""
 
-class BaseFilter[T: Event](ABC):
-    @abstractmethod
     def __call__(self, event: T) -> bool: ...

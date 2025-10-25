@@ -20,8 +20,7 @@ class AndroidLayer(PlatformLayer[Literal[PlatformOS.ANDROID]]):
         length = self.system_property_get(name.encode("UTF-8"), buffer)
         if length == 0:
             return default
-        else:
-            return buffer.value.decode("UTF-8", "backslashreplace")
+        return buffer.value.decode("UTF-8", "backslashreplace")
 
     def system_property_get(self, name: bytes, default: Array[c_char]) -> int:
         func = getattr(CDLL("libc.so"), "__system_property_get")

@@ -3,7 +3,7 @@ from typing import Any, Callable, Self
 from snakia.types import empty
 
 
-class classproperty[T]:
+class ClassProperty[T]:
     """
     Class property
     """
@@ -45,3 +45,20 @@ class classproperty[T]:
         """Descriptor deleter."""
         self.__fdel = fdel
         return self
+
+
+def classproperty[T](
+    fget: Callable[[Any], T] = empty.func,
+    fset: Callable[[Any, T], None] = empty.func,
+    fdel: Callable[[Any], None] = empty.func,
+) -> ClassProperty[T]:
+    """Create a class property.
+
+    Args:
+        fget (Callable[[Any], T], optional): The getter function. Defaults to empty.func.
+        fset (Callable[[Any, T], None], optional): The setter function. Defaults to empty.func.
+        fdel (Callable[[Any], None], optional): The deleter function. Defaults to empty.func.
+    Returns:
+        ClassProperty[T]: The class property.
+    """
+    return ClassProperty(fget, fset, fdel)

@@ -4,9 +4,9 @@ from typing import Any, Callable, overload
 from snakia.utils import to_async
 
 from .async_bindable import AsyncBindable
+from .base_bindable import ValueChanged
 from .bindable import Bindable
 from .concat import concat
-from .value_changed import ValueChanged
 
 
 @overload

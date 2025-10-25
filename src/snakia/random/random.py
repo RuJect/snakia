@@ -1,24 +1,32 @@
+import builtins
 from abc import ABC, abstractmethod
 from typing import Any, MutableSequence, Sequence, final
 
 
 class Random[S](ABC):
-    @abstractmethod
-    def bits(self, k: int) -> int: ...
+    """
+    A random number generator.
+    """
 
     @abstractmethod
-    def set_state(self, value: S) -> None: ...
+    def bits(self, k: builtins.int) -> builtins.int:
+        """Return k random bits."""
 
     @abstractmethod
-    def get_state(self) -> S: ...
+    def set_state(self, value: S) -> None:
+        """Set the state of the random number generator."""
+
+    @abstractmethod
+    def get_state(self) -> S:
+        """Get the state of the random number generator."""
 
     @final
-    def bytes(self, n: int) -> bytes:
+    def bytes(self, n: builtins.int) -> bytes:
         """Return n random bytes."""
         return self.bits(n * 8).to_bytes(n, "little")
 
     @final
-    def below(self, n: int) -> int:
+    def below(self, n: builtins.int) -> builtins.int:
         """Return a random int in the range [0,n). Defined for n > 0."""
         k = n.bit_length()
         while True:  # TODO: remove loop
@@ -27,7 +35,7 @@ class Random[S](ABC):
                 return x
 
     @final
-    def int(self, start: int, end: int) -> int:
+    def int(self, start: builtins.int, end: builtins.int) -> builtins.int:
         """Return a random int in the range [start, end]."""
         return self.below(end + 1 - start) + start
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import TYPE_CHECKING, Final, cast, final
+from typing import TYPE_CHECKING, ClassVar, Final, final
 
 from snakia.core.ecs import System
 from snakia.core.es import Dispatcher
@@ -13,11 +13,17 @@ if TYPE_CHECKING:
 
 
 class Plugin(Loadable):
-    meta: Final[Meta] = cast("Meta", ...)
+    __meta: ClassVar[Meta]
 
     @final
     def __init__(self, engine: Engine) -> None:
         self.__engine: Final = engine
+
+    @final
+    @property
+    def meta(self) -> Meta:
+        """The plugin's metadata."""
+        return self.__meta
 
     @final
     @property

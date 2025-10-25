@@ -29,20 +29,19 @@ class PlatformOS(IntEnum):
         """Get the current platform."""
         if sys.platform in ["win32", "win16", "dos", "cygwin", "msys"]:
             return PlatformOS.WINDOWS
-        elif sys.platform.startswith("linux"):
+        if sys.platform.startswith("linux"):
             return PlatformOS.LINUX
-        elif sys.platform.startswith("freebsd"):
+        if sys.platform.startswith("freebsd"):
             return PlatformOS.FREEBSD
-        elif sys.platform == "darwin":
+        if sys.platform == "darwin":
             return PlatformOS.MACOS
-        elif sys.platform == "ios":
+        if sys.platform == "ios":
             return PlatformOS.IOS
-        elif sys.platform == "android":
+        if sys.platform == "android":
             return PlatformOS.ANDROID
-        elif sys.platform.startswith("java"):
+        if sys.platform.startswith("java"):
             return PlatformOS.UNKNOWN
-        else:
-            return PlatformOS.UNKNOWN
+        return PlatformOS.UNKNOWN
 
 
 OS: Final[PlatformOS] = PlatformOS.resolve()

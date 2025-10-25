@@ -1,11 +1,11 @@
 from .android import AndroidLayer
-from .layer import PlatformLayer
 from .freebsd import FreebsdLayer
 from .ios import IosLayer
+from .layer import PlatformLayer
 from .linux import LinuxLayer
 from .macos import MacosLayer
-from .windows import WindowsLayer
 from .os import OS, PlatformOS
+from .windows import WindowsLayer
 
 __all__ = (
     "PlatformOS",

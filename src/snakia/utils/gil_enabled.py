@@ -1,6 +1,5 @@
 from typing import TYPE_CHECKING, Final
 
-
 if TYPE_CHECKING:
     GIL_ENABLED: Final[bool] = bool(...)
     """
