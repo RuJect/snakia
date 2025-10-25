@@ -3,7 +3,8 @@ from __future__ import annotations
 from ctypes import CDLL, Array, c_char, c_char_p, create_string_buffer
 from typing import Any, Literal, cast, overload
 
-from snakia.platform import PlatformLayer, PlatformOS
+from .layer import PlatformLayer
+from .os import PlatformOS
 
 
 class AndroidLayer(PlatformLayer[Literal[PlatformOS.ANDROID]]):

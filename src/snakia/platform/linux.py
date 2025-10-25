@@ -3,7 +3,8 @@ from __future__ import annotations
 import re
 from typing import Literal
 
-from snakia.platform import PlatformLayer, PlatformOS
+from .layer import PlatformLayer
+from .os import PlatformOS
 
 
 class LinuxLayer(PlatformLayer[Literal[PlatformOS.LINUX]]):

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import ClassVar, Self, final, overload
 
-from snakia.platform import PlatformOS
+from .os import PlatformOS
 
 
 class PlatformLayer[T: PlatformOS]:
