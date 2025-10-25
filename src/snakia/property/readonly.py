@@ -2,6 +2,11 @@ from typing import Any, Callable
 
 
 class Readonly[T]:
+    """
+    Readonly property.
+    """
+
+    __slots__ = ("__fget",)
 
     def __init__(
         self,
@@ -17,4 +22,12 @@ class Readonly[T]:
 
 
 def readonly[T](value: T) -> Readonly[T]:
+    """Create a readonly property with the given value.
+
+    Args:
+        value (T): The value to set the readonly property to.
+
+    Returns:
+        Readonly[T]: The readonly property.
+    """
     return Readonly(lambda _: value)

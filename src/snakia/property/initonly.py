@@ -3,8 +3,15 @@ from typing import Any
 from .priv_property import PrivProperty
 
 
-class initonly[T](PrivProperty[T]):
+class Initonly[T](PrivProperty[T]):
+    """Property that can only be set once."""
+
     def __set__(self, instance: Any, value: T, /) -> None:
         if hasattr(instance, self.name):
             return
-        setattr(instance, self.name, value)
+        super().__set__(instance, value)
+
+
+def initonly() -> Initonly[Any]:
+    """Factory for `Initonly`."""
+    return Initonly()
