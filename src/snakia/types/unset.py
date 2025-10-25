@@ -1,6 +1,6 @@
 from typing import final
 
-from snakia.types import Unique
+from .unique import Unique
 
 
 @final
