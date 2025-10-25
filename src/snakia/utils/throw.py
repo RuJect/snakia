@@ -19,6 +19,7 @@ def throw(
 def throw(
     *exceptions: Any, from_: Unset | BaseException = Unset()
 ) -> NoReturn:
+    """Throw an exception."""
     if isinstance(from_, Unset):
         if len(exceptions) == 1:
             raise exceptions[0]

@@ -5,6 +5,7 @@ from typing import Any
 
 
 def this() -> Any:
+    """Get the current function."""
     frame = sys._getframe(1)
     for obj in gc.get_objects():
         if isinstance(obj, FunctionType):

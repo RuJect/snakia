@@ -43,7 +43,7 @@
 - **Python** >= 3.12
 - **pip** or **uv** (recommended) package manager
 
-### Install from PyPi
+### Install from PyPi (recommended)
 
 ```bash
 pip install snakia
@@ -117,20 +117,20 @@ Snakia is built on a modular architecture with clear separation of concerns:
 
 ```plaintext
 Snakia/
-├── 🧠 core/           # Framework core
-│   ├── engine.py      # Main engine
-│   ├── ecs/           # Entity-Component-System
-│   ├── es/            # Event System
-│   ├── loader/        # Plugin loading system
-│   ├── rx/            # Reactive programming
-│   └── tui/           # Terminal User Interface
-├── 🎭 decorators/     # Decorators
-├── 🏷️ property/       # Property system
-├── 🌐 platform/      # Platform abstraction
-├── 🛠️ utils/         # Utilities
-├── 🎲 random/        # Random number generation
-├── 📝 field/         # Typed fields
-└── 🔧 types/         # Special types
+├── core/           # Framework core
+│   ├── engine.py   # Main engine
+│   ├── ecs/        # Entity-Component-System
+│   ├── es/         # Event System
+│   ├── loader/     # Plugin loading system
+│   ├── rx/         # Reactive programming
+│   └── tui/        # Terminal User Interface
+├── decorators/    # Decorators
+├── property/      # Property system
+├── platform/      # Platform abstraction
+├── utils/         # Utilities
+├── random/        # Random number generation
+├── field/         # Typed fields
+└── types/         # Special types
 ```
 
 ## ⚙️ Core

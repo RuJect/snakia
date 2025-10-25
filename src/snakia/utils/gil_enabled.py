@@ -1,8 +1,14 @@
-import sys
+from typing import TYPE_CHECKING, Final
 
-if sys.version_info >= (3, 13):
-    GIL_ENABLED = sys._is_gil_enabled()
+
+if TYPE_CHECKING:
+    GIL_ENABLED: Final[bool] = bool(...)
+    """
+    Whether the GIL is enabled."""
 else:
-    GIL_ENABLED: bool = True
+    import sys
 
-__all__ = ["GIL_ENABLED"]
+    if sys.version_info >= (3, 13):
+        GIL_ENABLED = sys._is_gil_enabled()
+    else:
+        GIL_ENABLED = True
