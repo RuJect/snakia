@@ -43,6 +43,12 @@
 - **Python** >= 3.12
 - **pip** or **uv** (recommended) package manager
 
+### Install from PyPi
+
+```bash
+pip install snakia
+```
+
 ### Install from Source
 
 ```bash
@@ -862,4 +868,4 @@ Need help? We're here to assist you!
 
 ## 📄 License
 
-This project is distributed under the CC0 1.0 Universal. See the `LICENSE` file for details.
+See the `LICENSE` file for details.

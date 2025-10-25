@@ -1,7 +1,7 @@
 [project]
 name = "snakia"
-version = "0.1.0"
-description = "idk"
+version = "0.2.0"
+description = "Modern python framework"
 readme = "README.md"
 authors = [
     { name = "rus07tam", email = "rus07tam@gmail.com" }
@@ -20,6 +20,8 @@ dependencies = [
     "networkx>=3.4.2",
     "pydantic>=2.12.3",
 ]
+license = "CC0-1.0"
+license-files = ["LICENSE"]
 
 [project.urls]
 Homepage = "https://github.com/ruject/snakia"
