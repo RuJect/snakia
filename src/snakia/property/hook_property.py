@@ -2,8 +2,10 @@ from typing import Any, Callable, cast
 
 from snakia.types import empty
 
+from .priv_property import PrivProperty
 
-class HookProperty[T]:
+
+class HookProperty[T](PrivProperty[T]):
 
     def __init__(
         self,
@@ -18,21 +20,15 @@ class HookProperty[T]:
         self.on_del: Callable[[T], None] = on_del
 
     def __get__(self, instance: Any, owner: type | None = None, /) -> T:
-        value = cast(T, getattr(instance, self.__get_name(instance)))
+        value = cast(T, getattr(instance, self.name))
         self.on_get(value)
         return value
 
     def __set__(self, instance: Any, value: T, /) -> None:
         self.on_set(value)
-        setattr(instance, self.__get_name(instance), value)
+        setattr(instance, self.name, value)
 
     def __delete__(self, instance: Any, /) -> None:
-        value = cast(T, getattr(instance, self.__get_name(instance)))
+        value = cast(T, getattr(instance, self.name))
         self.on_del(value)
-        delattr(instance, self.__get_name(instance))
-
-    def __get_name(
-        self,
-        instance: Any,
-    ) -> str:
-        return f"_{id(instance)}__{self.__name}"
+        delattr(instance, self.name)

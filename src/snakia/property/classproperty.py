@@ -19,13 +19,13 @@ class classproperty[T]:
             raise AttributeError("unreadable attribute")
         return self.__fget(owner)
 
-    def __set__(self, instance: Any, value: T, /) -> None:
+    def __set__(self, instance: Any | None, value: T, /) -> None:
         if self.__fset is None:
             return
         owner = type(instance) if instance else instance
         return self.__fset(owner, value)
 
-    def __delete__(self, instance: Any, /) -> None:
+    def __delete__(self, instance: Any | None, /) -> None:
         if self.__fdel is None:
             return
         owner = type(instance) if instance else instance

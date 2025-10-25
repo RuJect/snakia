@@ -2,24 +2,18 @@ from typing import Any, cast
 
 
 class PrivProperty[T]:
-
-    def __init__(
-        self,
-        name: str,
-    ) -> None:
-        self.__name = name
+    def __set_name__(self, owner: type, name: str) -> None:
+        self.__name: str = f"_{owner.__name__}__{name}"
 
     def __get__(self, instance: Any, owner: type | None = None, /) -> T:
-        return cast(T, getattr(instance, self.__get_name(instance)))
+        return cast(T, getattr(instance, self.__name))
 
     def __set__(self, instance: Any, value: T, /) -> None:
-        setattr(instance, self.__get_name(instance), value)
+        setattr(instance, self.__name, value)
 
     def __delete__(self, instance: Any, /) -> None:
-        delattr(instance, self.__get_name(instance))
+        delattr(instance, self.__name)
 
-    def __get_name(
-        self,
-        instance: Any,
-    ) -> str:
-        return f"_priv{instance.__class__.__name__}__{self.__name}"
+    @property
+    def name(self) -> str:
+        return self.__name

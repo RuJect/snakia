@@ -1,7 +1,7 @@
 from typing import Any, Callable
 
 
-class readonly[T]:
+class Readonly[T]:
 
     def __init__(
         self,
@@ -14,3 +14,7 @@ class readonly[T]:
 
     def __set__(self, instance: Any, value: T, /) -> None:
         pass
+
+
+def readonly[T](value: T) -> Readonly[T]:
+    return Readonly(lambda _: value)

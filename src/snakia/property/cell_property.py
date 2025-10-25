@@ -1,21 +1,21 @@
 from typing import Any, Callable, Self
 
+from .priv_property import PrivProperty
+
 type _Cell[T] = T | None
 type _Getter[T] = Callable[[Any, _Cell[T]], T]
 type _Setter[T] = Callable[[Any, _Cell[T], T], _Cell[T]]
 type _Deleter[T] = Callable[[Any, _Cell[T]], _Cell[T]]
 
 
-class CellProperty[T]():
+class CellProperty[T](PrivProperty[T]):
 
     def __init__(
         self,
-        name: str,
         fget: _Getter[T] | None = None,
         fset: _Setter[T] | None = None,
         fdel: _Deleter[T] | None = None,
     ) -> None:
-        self.__name = name
         self.__fget: _Getter[T] | None = fget
         self.__fset: _Setter[T] | None = fset
         self.__fdel: _Deleter[T] | None = fdel
@@ -52,23 +52,10 @@ class CellProperty[T]():
         return self
 
     def __get_cell(self, instance: Any) -> T | None:
-        return getattr(instance, self.__get_name(instance), None)
+        return getattr(instance, self.name, None)
 
     def __set_cell(self, instance: Any, value: T | None) -> None:
         if value is None:
-            delattr(instance, self.__get_name(instance))
+            delattr(instance, self.name)
         else:
-            setattr(instance, self.__get_name(instance), value)
-
-    def __get_name(
-        self,
-        instance: Any,
-    ) -> str:
-        return f"_cell{instance.__class__.__name__}__{self.__name}"
-
-
-def cell_property[T](name: str) -> Callable[
-    [_Getter[T]],
-    CellProperty[T],
-]:
-    return lambda fget: CellProperty(name, fget)
+            setattr(instance, self.name, value)
