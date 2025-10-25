@@ -1,13 +1,13 @@
-from .bool import Bool
+from .bool import BoolField
 from .field import Field
-from .float import Float
-from .int import Int
-from .str import Str
+from .float import FloatField
+from .int import IntField
+from .str import StrField
 
 __all__ = [
     "Field",
-    "Bool",
-    "Float",
-    "Int",
-    "Str",
+    "BoolField",
+    "FloatField",
+    "IntField",
+    "StrField",
 ]

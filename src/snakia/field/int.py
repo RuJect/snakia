@@ -3,15 +3,12 @@ from typing import override
 from .field import Field
 
 
-class Int(Field[int], type=int):
+class IntField(Field[int]):
     @override
-    def serialize(self, value: int, /) -> str:
-        return str(value)
+    def serialize(self, value: int, /) -> bytes:
+        length = (value.bit_length() + 7) // 8
+        return value.to_bytes(length, "little")
 
     @override
-    def deserialize(self, serialized: str, /) -> int:
-        return int(serialized)
-
-    @override
-    def validate(self, serialized: str, /) -> bool:
-        return all(c in "1234567890" for c in serialized.removeprefix("-+"))
+    def deserialize(self, serialized: bytes, /) -> int:
+        return int.from_bytes(serialized, "little")

@@ -1,17 +1,17 @@
-from typing import override
+from typing import Final, override
 
 from .field import Field
 
 
-class Str(Field[str], type=str):
-    @override
-    def serialize(self, value: str, /) -> str:
-        return value
+class StrField(Field[str]):
+    def __init__(self, default_value: str, *, encoding: str = "utf-8") -> None:
+        super().__init__(default_value)
+        self.encoding: Final = encoding
 
     @override
-    def deserialize(self, serialized: str, /) -> str:
-        return serialized
+    def serialize(self, value: str, /) -> bytes:
+        return value.encode(self.encoding)
 
     @override
-    def validate(self, serialized: str, /) -> bool:
-        return True
+    def deserialize(self, serialized: bytes, /) -> str:
+        return serialized.decode(self.encoding)

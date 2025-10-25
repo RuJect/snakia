@@ -1,20 +1,14 @@
+import struct
 from typing import override
 
 from .field import Field
 
 
-class Float(Field[float], type=int):
+class FloatField(Field[float]):
     @override
-    def serialize(self, value: float, /) -> str:
-        return str(value)
+    def serialize(self, value: float, /) -> bytes:
+        return struct.pack(">f", value)
 
     @override
-    def deserialize(self, serialized: str, /) -> float:
-        return float(serialized)
-
-    @override
-    def validate(self, serialized: str, /) -> bool:
-        serialized = serialized.removeprefix("-+")
-        if serialized.count(".") > 1:
-            return False
-        return all(c in "1234567890." for c in serialized)
+    def deserialize(self, serialized: bytes, /) -> float:
+        return struct.unpack(">f", serialized)[0]  # type: ignore

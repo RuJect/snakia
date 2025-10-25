@@ -1,23 +1,34 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any, Callable, final
+from typing import TYPE_CHECKING, Any, Callable, Final, final
 
 from snakia.utils import inherit
 
 
 class Field[T: Any](ABC):
-    @abstractmethod
-    def serialize(self, value: T, /) -> str:
-        pass
+    def __init__(self, default_value: T) -> None:
+        self.default_value: Final[T] = default_value
 
     @abstractmethod
-    def deserialize(self, serialized: str, /) -> T:
-        pass
+    def serialize(self, value: T, /) -> bytes:
+        """Serialize a value
+
+        :param value: value to serialize
+        :type value: T
+        :return: serialized value
+        :rtype: bytes
+        """
 
     @abstractmethod
-    def validate(self, serialized: str, /) -> bool:
-        pass
+    def deserialize(self, serialized: bytes, /) -> T:
+        """Deserialize a value
+
+        :param serialized: serialized value
+        :type serialized: bytes
+        :return: deserialized value
+        :rtype: T
+        """
 
     @final
     @classmethod
@@ -29,10 +40,6 @@ class Field[T: Any](ABC):
         return inherit(
             cls, {"serialize": serialize, "deserialize": deserialize}
         )
-
-    @final
-    def __init_subclass__(cls, type: type[T]) -> None:
-        setattr(cls, "type", lambda: type)
 
     if TYPE_CHECKING:
 
