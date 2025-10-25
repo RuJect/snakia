@@ -5,8 +5,11 @@ from snakia.types.unset import Unset
 
 @overload
 def throw[T: Exception](
-    *exceptions: T, from_: Unset | BaseException = Unset()  # type: ignore
+    *exceptions: T,  # pyright: ignore[reportInvalidTypeVarUse]
+    from_: Unset | BaseException = Unset(),
 ) -> NoReturn: ...
+
+
 @overload
 def throw(
     exception: BaseException, from_: Unset | BaseException = Unset(), /

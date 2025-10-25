@@ -5,7 +5,7 @@ from collections.abc import Iterable
 from itertools import count
 from typing import TYPE_CHECKING, Any, cast, overload
 
-import networkx as nx
+import networkx as nx  # type: ignore
 
 from snakia.utils import nolock
 
