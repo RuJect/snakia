@@ -1,10 +1,9 @@
 from .attrs import get_attrs, get_or_set_attr
-from .calls import call, caller
 from .exceptions import catch, throw
 from .frames import frame
+from .funcs import call, caller, ret, side, side_func
 from .gil import GIL_ENABLED, nolock
 from .inherit import inherit
-from .side import side, side_func
 from .this import this
 from .to_async import to_async
 
@@ -17,6 +16,7 @@ __all__ = [
     "frame",
     "inherit",
     "nolock",
+    "ret",
     "side",
     "side_func",
     "this",

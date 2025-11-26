@@ -95,7 +95,7 @@ def combine(
     )
 
     def subscriber(_: ValueChanged[Any]) -> None:
-        combined.set(combiner(*[*map(lambda s: s.value, sources)]))
+        combined.set(combiner(*map(lambda s: s.value, sources)))
 
     for source in sources:
         if isinstance(source, Bindable):
@@ -185,7 +185,7 @@ def async_combine(
     )
 
     async def subscriber(_: ValueChanged[Any]) -> None:
-        result = await combiner(*[*map(lambda s: s.value, sources)])
+        result = await combiner(*map(lambda s: s.value, sources))
         await combined.set(result)
 
     for source in sources:

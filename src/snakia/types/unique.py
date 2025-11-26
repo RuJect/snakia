@@ -49,24 +49,29 @@ class UniqueType(type):
             raise TypeError(f"{cls} not unwrapped")
         return value  # type: ignore
 
+    def unwrap_or(cls: type[T], value: V | type[T] | T, default: R, /) -> V | R:
+        if value is cls or isinstance(value, cls):
+            return default
+        return value  # type: ignore
+
     def map(
         cls: type[T],
         value: V | type[T] | T,
-        and_then: Callable[[V], R],
-        or_else: Callable[[type[T]], R],
+        or_else: Callable[[V], R],
+        and_then: Callable[[type[T]], R],
     ) -> R:
         if value is cls or isinstance(value, cls):
-            return or_else(cls)
-        return and_then(value)  # type: ignore
+            return and_then(cls)
+        return or_else(value)  # type: ignore
 
-    def and_then(
+    def or_else(
         cls: type[T], value: V | type[T] | T, func: Callable[[V], R]
     ) -> type[T] | R:
         if value is cls or isinstance(value, cls):
             return cls
         return func(value)  # type: ignore
 
-    def or_else(
+    def and_then(
         cls: type[T], value: V | type[T] | T, func: Callable[[type[T]], R]
     ) -> R | V:
         if value is cls or isinstance(value, cls):

@@ -12,7 +12,7 @@ MARKERS_ATTR = "__snakia_markers__"
 
 
 def _get_all_markers(obj: Any) -> dict[type["Marker"], "Marker"]:
-    return get_or_set_attr(obj, MARKERS_ATTR, dict[type[Marker], Marker]())
+    return get_or_set_attr(obj, MARKERS_ATTR, dict())
 
 
 class Marker:

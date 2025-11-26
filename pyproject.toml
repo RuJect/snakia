@@ -26,7 +26,7 @@ dependencies = [
     "types-networkx>=3.5.0.20251106",
     "typing-extensions>=4.15.0",
 ]
-license = "CC0-1.0"
+license = "Unlicense"
 license-files = ["LICENSE"]
 
 [project.urls]

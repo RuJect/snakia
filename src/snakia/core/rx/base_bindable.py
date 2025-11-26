@@ -29,8 +29,7 @@ class BaseBindable(Generic[T]):
     def value(self) -> T:
         if self.has_value:
             return self.__value
-        else:
-            return self.default_value
+        return self.default_value
 
     @property
     def has_value(self) -> bool:
